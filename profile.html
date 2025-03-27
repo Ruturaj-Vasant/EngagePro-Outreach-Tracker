@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= senderName ?>'s Profile</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            background-color: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(87, 6, 140, 0.12);
+            padding: 40px;
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+        }
+        .header {
+            margin-bottom: 32px;
+        }
+        .title {
+            color: #57068c;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+        .profile-btn {
+            background-color: #57068c;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 24px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            max-width: 200px;
+            margin: 10px auto;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        .profile-btn:hover {
+            background-color: #450570;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(87, 6, 140, 0.2);
+        }
+        .profile-btn:active {
+            transform: translateY(1px);
+        }
+        .development-notice {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .linkedin-message {
+            font-style: italic;
+            color: #57068c;
+            margin: 15px 0;
+        }
+        .feedback-section {
+            margin-top: 30px;
+        }
+        .feedback-textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            margin-bottom: 10px;
+        }
+        .submit-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            visibility: hidden;
+        }
+        .loading-spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #57068c;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title"><?= senderName ?>'s Profile</h1>
+            <p id="professorGreeting" style="display: none;" class="subtitle">Hello Professor <?= professorLastName ?>,</p>
+        </div>
+        
+        <div class="development-notice">
+            This profile website is currently under development. Please refer to the links below for the most up-to-date information.
+        </div>
+        
+        <p class="linkedin-message">Let's connect on LinkedIn! I regularly post about my learning experiences there.</p>
+        <a href="#" onclick="handleClick('linkedIn')" class="profile-btn">LinkedIn</a>
+        <a href="#" onclick="handleClick('cv')" class="profile-btn">CV</a>
+        <a href="#" onclick="handleClick('resume')" class="profile-btn">Resume</a>
+        <a href="#" onclick="handleClick('nyuTranscript')" class="profile-btn">NYU Transcript</a>
+        <a href="#" onclick="handleClick('classSchedule')" class="profile-btn">Class Schedule (Spring)</a>
+        
+        <div class="contact-info">
+            <p>Contact Information:</p>
+            <p>Email: <a href="mailto:<?= senderEmail ?>"><?= senderEmail ?></a></p>
+            <p>Phone: <?= config.senderPhone ?></p>
+        </div>
+        
+        <div class="feedback-section">
+            <h3>Your Feedback is Valuable</h3>
+            <p>I would greatly appreciate your advice or suggestions:</p>
+            <textarea id="feedbackText" class="feedback-textarea" placeholder="Let's grab a cup of coffee if you'd like to know how I developed this or want to share a story..."></textarea>
+            <button onclick="submitFeedback()" class="submit-btn">Submit Feedback</button>
+            <p id="feedbackMessage" style="color: green; font-weight: bold; display: none; margin-top: 10px;">Thank you for your feedback!</p>
+        </div>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <script>
+    function handleClick(type) {
+        showLoading();
+        google.script.run
+            .withSuccessHandler(function(url) {
+                if (url) {
+                    window.open(url, '_blank');
+                    hideLoading();
+                } else {
+                    console.error('No URL returned for ' + type);
+                    hideLoading();
+                }
+            })
+            .withFailureHandler(function(error) {
+                console.error('Error occurred:', error);
+                hideLoading();
+            })
+            .handleButtonClick(type, '<?= professorEmail ?>');
+    }
+
+    function submitFeedback() {
+        var feedback = document.getElementById('feedbackText').value;
+        if (feedback.trim() === '') {
+            alert('Please enter your feedback before submitting.');
+            return;
+        }
+        showLoading();
+        google.script.run
+            .withSuccessHandler(function(result) {
+                document.getElementById('feedbackMessage').textContent = 'Thank you! Your message has been added.';
+                document.getElementById('feedbackMessage').style.display = 'block';
+                document.getElementById('feedbackText').value = '';
+                hideLoading();
+            })
+            .withFailureHandler(function(error) {
+                console.error('Error submitting feedback:', error);
+                alert('There was an error submitting your feedback. Please try again.');
+                hideLoading();
+            })
+            .saveFeedback('<?= professorEmail ?>', feedback);
+    }
+
+    function showLoading() {
+        document.getElementById('loadingOverlay').style.visibility = 'visible';
+    }
+
+    function hideLoading() {
+        document.getElementById('loadingOverlay').style.visibility = 'hidden';
+    }
+
+    // Show professor greeting if professorName is available
+    if ('<?= professorLastName ?>') {
+    document.getElementById('professorGreeting').textContent = 'Hello Professor <?= professorLastName ?>,';
+    document.getElementById('professorGreeting').style.display = 'block';
+    }
+    </script>
+</body>
+</html>
