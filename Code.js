@@ -142,7 +142,7 @@ function sendEmail(email, professorName, currentStatus) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seeking Opportunity at NYU</title>
+  <title>Exploring Opportunities</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -150,18 +150,12 @@ function sendEmail(email, professorName, currentStatus) {
       color: #333;
       max-width: 600px;
       margin: 0 auto;
-      padding: 10px; /* Reduced padding */
-      font-size: 16px; /* Increased base font size */
+      padding: 10px;
+      font-size: 16px;
     }
     h1 {
-      color: #ffffff; /* Title color fixed to white */
-      font-size: 30px; /* Slightly increased font size for better visibility */
-    }
-    .highlight {
-      background-color: #f4f4f9;
-      border-left: 4px solid #57068c;
-      padding: 10px; /* Reduced padding */
-      margin: 15px 0; /* Reduced margin */
+      color: #ffffff;
+      font-size: 24px;
     }
     .skim {
       font-weight: bold;
@@ -169,152 +163,68 @@ function sendEmail(email, professorName, currentStatus) {
     }
     ul {
       padding-left: 20px;
-      margin-bottom: 10px; /* Reduced spacing between list items */
+      margin-bottom: 10px;
     }
     a.button {
       display: inline-block;
       background-color: #57068c;
       color: #ffffff;
       text-decoration: none;
-      padding: 10px 20px; /* Adjusted button size */
+      padding: 10px 20px;
       border-radius: 5px;
-      font-size: 16px; /* Increased button text size */
-    }
-    td {
-      padding: 10px; /* Reduced padding inside table cells */
+      font-size: 16px;
     }
   </style>
 </head>
-<body style="font-family: Arial, sans-serif; background-color: #f7f7fb; color: #333; margin: 0; padding: 0;"> 
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f7f7fb; margin:0; padding:20px;">
+<body style="background-color: #f7f7fb;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding: 20px;">
     <tr>
       <td align="center">
-        <!-- Main Container -->
-        <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color:#fff; border-radius:10px; box-shadow:0 8px 16px rgba(0,0,0,0.1); overflow:hidden;">
-          <!-- Header -->
+        <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color:#fff; border-radius:10px; box-shadow:0 8px 16px rgba(0,0,0,0.1);">
           <tr>
             <td style="background-color:#57068c; color:#fff; padding:15px; text-align:center;">
-              <table width="100%">
-                <tr>
-                  <td align="left" style="width:80px;">
-                    <img src="cid:profilePic" alt="Your Photo" style="width:80px; height:auto; border-radius:50%; border:3px solid #fff;">
-                  </td>
-                  <td align="center">
-                    <h1>Seeking Opportunity at NYU</h1>
-                  </td>
-                </tr>
-              </table>
+              <h1>Exploring Opportunities</h1>
             </td>
           </tr>
-
-          <!-- Content -->
           <tr>
             <td style="padding:15px;">
-              <h2 style="color:#57068c;">Greetings ${lastName},</h2>
-
-              <p>I'm <span class="skim">${CONFIG.senderName}</span>, a graduate student at NYU in <span class="skim">Computer Science and Information Systems</span>. I'm reaching out about potential <span class="skim">TA/RA positions</span> that might be available.</p>
-
-              <p>Now, I know you probably get a ton of these emails, so let me tell you something you won't find on my resume:</p>
-
-              <div class="highlight">
-                <ul style="list-style-type:none; padding-left:0;">
-                  <li><strong>I'm a process ninja:</strong> I have a knack for optimizing and automating both technical and non-technical processes.</li>
-                  <li><strong>I've got people skills:</strong> I've mentored students in school help groups and even engineers. I'm what you might call a "techno people person" - I speak both geek and human!</li>
-                </ul>
-                <p style="font-style:italic;">"I'm not just looking for a job; I'm looking for an opportunity to make a difference while keeping my ramen budget intact!"</p>
-              </div>
-
-              <p>A bit about myself:</p>
-
+              <h2 style="color:#57068c;">Hello ${recruiterName},</h2>
+              <p>I hope you're doing well! My name is <span class="skim">${CONFIG.senderName}</span>, and I am currently exploring new career opportunities in <span class="skim">[your field]</span>. Given your expertise in recruitment, I wanted to reach out and introduce myself.</p>
+              <p>With a strong background in <span class="skim">[key skills]</span>, I have experience working on <span class="skim">[mention relevant projects or achievements]</span>. I'm particularly interested in roles that involve <span class="skim">[specific interests]</span> and believe my skills could be a great match for opportunities your team is hiring for.</p>
+              <p>Here’s a quick overview of my background:</p>
               <ul>
-                <li><span class="skim">5+ years of experience</span> in software engineering and performance optimization</li>
-                <li>Currently diving into <span class="skim">ML and finance</span> through NYU coursework</li>
-                <li>Strong background in <span class="skim">distributed systems and cloud infrastructure</span></li>
+                <li><span class="skim">[X] years of experience</span> in [industry/role]</li>
+                <li>Proficient in <span class="skim">[key tools or technologies]</span></li>
+                <li>Passionate about <span class="skim">[area of expertise or interest]</span></li>
               </ul>
-
-              <p>I'm ready to bring my A-game - whether it's <span class="skim"> assisting with research, organizing course materials, or enhancing student engagement </span>. I can contribute by streamlining processes and supporting your academic goals. I promise to bring as much enthusiasm to grading papers as I do to a fresh cup of coffee on Monday morning!</p>
-
-              <!-- View Profile Button -->
+              <p>I’d love to connect and discuss how my experience aligns with any open positions. Please feel free to check out my profile below.</p>
               <table width="100%" cellpadding="5" cellspacing="0" border="0" style="text-align:center;">
                 <tr>
                   <td align="center">
-                    <a href="${profileUrl}" class="button">Check Out My Profile</a>
+                    <a href="${profileUrl}" class="button">View My Profile</a>
                   </td>
                 </tr>
               </table>
-
-              <!-- Closing -->
-              <p>I'd love the chance to chat more about how I can contribute to your work. I promise I'm much funnier in person!</p>
-
-              <!-- Signature -->
+              <p>Looking forward to your thoughts. Thanks for your time!</p>
               <div style="margin-top:15px;">
-                Thanks for your time,<br>
+                Best regards,<br>
                 ${CONFIG.senderName}<br>
-                Aspiring TA/RA<br>
                 <a href="mailto:${CONFIG.senderEmail}" style="color:#57068c;">${CONFIG.senderEmail}</a> | ${CONFIG.senderPhone}
               </div>
-
-              <!-- Footer -->
-              <tr>
-                <td colspan="2" style="
-                  background-color:#eeeeee;
-                  color:#555555;
-                  text-align:center;
-                  font-size:14px;
-                  padding:10px;"> <!-- Added colspan="2" for full-width footer -->
-                  P.S. If you've read this far, you're awesome. Thanks for your time!
-                </td>
-              </tr>
-
             </td>
           </tr>
-
-        </table> <!-- End Main Container -->
+        </table>
       </td>
     </tr>
   </table>
-
-${trackingPixel}
-
+  ${trackingPixel}
 </body>
 </html>
     `;
     
    GmailApp.sendEmail(
   email,
-  `Exploring Opportunities at NYU - ${CONFIG.senderName}`,
-  `Greetings Professor ${lastName},
-
- I'm ${CONFIG.senderName},a graduate student at NYU in Computer Science and Information Systems. I'm reaching out about potential TA/RA positions that might be available.
-
-Now, I know you probably get a ton of these emails, so let me tell you something you won't find on my resume:
-
-I'm a process ninja: I have a knack for optimizing and automating both technical and non-technical processes.
-
-I've got people skills: I've mentored students in school help groups and even engineers. I'm what you might call a "techno people person" - I speak both geek and human!
-
-"I'm not just looking for a job; I'm looking for an opportunity to make a difference while keeping my ramen budget intact!"
-
-A bit about myself:
-
-5+ years of experience in software engineering and performance optimization
-
-Currently diving into ML and finance through NYU coursework
-
-Strong background in distributed systems and cloud infrastructure
-
-I'm ready to bring my A-game - whether it's assisting with research, organizing course materials, or enhancing student engagement. I can contribute by streamlining processes and supporting your academic goals. I promise to bring as much enthusiasm to grading papers as I do to a fresh cup of coffee on Monday morning!
-
-To learn more about me, please check out my profile at: ${profileUrl}
-
-I'd love the chance to chat more about how I can contribute to your team. I promise I'm much funnier in person!
-
-Thanks a bunch,
-${CONFIG.senderName}
-Aspiring TA/RA
-${CONFIG.senderEmail} | ${CONFIG.senderPhone}
-
-P.S. If you've read this far, you're awesome. Thanks for your time!`,
+  ``,
   {
     htmlBody: htmlTemplate,
     inlineImages: {
